@@ -1,0 +1,202 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<% const formatDate = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${day}-${month}-${year}`;
+}; %>
+
+<body>
+  <div class="main_box">
+    <div class="box">
+      <% if(last.name != "" ) { %>
+        <h2>Location:</h2>    
+        <h2>
+          <%= last.name %> , India<br>
+          <% const today = new Date(); %>
+          <%= formatDate(today) %>
+        </h2>
+      <% } %>
+    </div>
+
+    <div class="box">
+      <% if((last.temp != "") && (last.feel != "")) { %>
+        <h2>Temperature: <%= last.temp %> &deg;C</h2>
+        
+        <h2>Feels Like: <%= last.feel %>  &deg;C</h2>
+      <% } %>
+    </div>
+
+    <div class="box">
+      <% if((last.sea_l != "") && (last.grnd_l != "")) { %>
+        <h3>Pressure at Sea Level: <%= last.sea_l %> hPa</h3>
+        
+        <h3>Pressure at Ground Level: <%= last.grnd_l %> hPa</h3>
+      <% } %>
+
+    </div>
+
+    <div class="box">
+      <% if(last.wt != "" ) { %>
+        <h1>Weather: <%= last.wt %> </h1>
+      <% } %>
+    </div>
+
+    <div class="box">
+      <% if((last.pres != "") && (last.hu != "")) { %>
+        <h2>Atmospheric Pressure: <%= last.pres %> hPa </h2>
+        
+        <h2>Humidity: <%= last.hu %> <i class="fa-solid fa-percent"></i> </h2>
+      <% } %>
+    </div>
+
+    <div class="box">
+      <% if(last.visibility != "" ) { %>
+        <h2>Visibility: <%= last.visibility/1000 %> Km </h2>
+      <% } %>
+    </div>
+
+    <div class="box">
+      <% if((last.wind != "") && (last.deg != "")) { %>
+        <h2>Wind Speed: <%= last.wind %> m/s </h2>
+        
+        <h2>Wind Direction: <%= last.deg %> &deg; from North </h2>
+      <% } %>
+    </div>
+
+    <div class="box">
+      <% if(last.sunrise != "" ) { %>
+        <h2>Sunrise: <%= last.sunrise %> </h2>
+      <% } %>
+    </div>
+
+    <div class="box"> 
+      <% if(last.sunset != "" ) { %>
+        <h2>Sunset: <%= last.sunset %> </h2> 
+      <% } %>
+    </div>
+
+  </div>
+  
+  <% if(last.name == "Gwalior") { %>
+  <div class="prediction">
+    <div class="pr">
+      <div class="inb">
+        <% const tomorrow=new Date(); const today=new Date(); tomorrow.setDate(today.getDate() + 1); %>
+          <h5>Date: <%= formatDate(tomorrow) %>
+          </h5>
+          <h5> Temp: <%= lt_1.temp %> &deg;C </h5>
+          <h5> Weather: <%= lt_1.sky %>
+          </h5>
+      </div>
+  
+      <div class="inb">
+        <h4>Max Temp: <%= lt_1.tempmax %> &deg;C </h4>
+        <br>
+        <h4>Min Temp: <%= lt_1.tempmin %> &deg;C</h4>
+      </div>
+  
+      <div class="inb">
+        <h5>Humidity: <%= lt_1.humid %> <i class="fa-solid fa-percent"></i> </h5>
+        <br>
+        <h5>Pressure: <%= lt_1.pressure %> hPa</h5>
+      </div>
+  
+      <div class="inb">
+        <h5>Max Wind: <%= lt_1.windmax %> m/s </h5>
+        <br>
+        <h5>Min Wind: <%= lt_1.windmin %> m/s</h5>
+      </div>
+  
+      <div class="inb">
+        <h5>Rain: <%= lt_1.rain %> <i class="fa-solid fa-percent"></i></h5>
+        <br>
+        <h5>Dew Temp: <%= lt_1.dew %> &deg;C </h5>
+      </div>
+  
+    </div>
+  
+    <div class="pr">
+      <div class="inb">
+  
+          <% // const today=new Date(); 
+             const dayAfterTomorrow=new Date(); 
+             dayAfterTomorrow.setDate(today.getDate() + 2); 
+          %>
+          <h5>Date: <%= formatDate(dayAfterTomorrow) %>
+          </h5>
+          <h5>Temp: <%= lt_2.temp %> &deg;C</h5>
+          <h5>Weather: <%= lt_2.sky %>
+          </h5>
+      </div>
+  
+      <div class="inb">
+        <h5>Max Temp: <%= lt_2.tempmax %> &deg;C</h5>
+        <br>
+        <h5>Min Temp: <%= lt_2.tempmin %> &deg;C</h5>
+      </div>
+  
+      <div class="inb">
+        <h5>Humidity: <%= lt_2.humid %> <i class="fa-solid fa-percent"></i></h5>
+        <br>
+        <h5>Pressure: <%= lt_2.pressure %> hPa</h5>
+      </div>
+  
+      <div class="inb">
+        <h5>Max Wind: <%= lt_2.windmax %> m/s</h5>
+        <br>
+        <h5>Min Wind: <%= lt_2.windmin %> m/s</h5>
+      </div>
+  
+      <div class="inb">
+        <h5>Rain: <%= lt_2.rain %> <i class="fa-solid fa-percent"></i></h5>
+        <br>
+        <h5>Dew Temp: <%= lt_2.dew %> &deg;C</h5>
+      </div>
+    </div>
+  </div>
+
+  <% } %>
+
+    <!-- <div class="intro">
+      <div class="intro_head">
+        <h1 class="conintro">Introduction</h1>
+      </div>
+
+      <div class="intro_content">
+        The objective of this project is to create an AI-driven research engine tailored for legal professionals, particularly
+        judges and judicial officers in commercial courts. By leveraging advanced AI technologies, the system aims to streamline
+        legal research, providing faster access to case law, statutes, and legal precedents. This solution will be customized
+        for different legal systems, predictive in analyzing case outcomes, reliable in delivering accurate information, and
+        user-friendly to enhance adoption. It will also support multiple languages to accommodate diverse jurisdictions and
+        ensure ethical neutrality by avoiding biases, ultimately contributing to more efficient dispute resolution.
+      </div>
+
+      <a href="/work"> <button class="intro_button">Learn More!</button> </a>
+    </div>
+
+    <div class="main_sub">
+      <div class="model">
+        <h2 class="model_head">Advanced Research Engine Model for Case Summaries & Outcomes</h2>
+        <br><br><br><br>
+        <a href="/form"> <button class="model_button">Try Our Model</button> </a>
+  
+      </div>
+
+      <div class="about">
+        <h2 class="about_head">About Us!</h2>
+        <br>
+        <ul>
+          <li class="about_info">Team Name: Verdict Ventures</li>
+          <li class="about_info">Team ID: 34808</li>
+          <li class="about_info">PS ID: 1701</li>
+          <li class="about_info">PS Title: AI-Driven Research 
+            Engine for Commercial Courts</li>
+        </ul>
+
+      </div>
+
+    </div> -->
+    
+</body>
